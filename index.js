@@ -14,7 +14,7 @@ const templates = require("./templates.js")
 
 program
 	.version(require('./package').version )
-	.command('init <project_name>')
+	.command('create <project_name>')
 	.action(project_name => {
 		let projectPath = process.cwd() + '/' + project_name
 		if(!fs.existsSync(projectPath)){
