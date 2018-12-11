@@ -2,7 +2,7 @@ const axios = require('axios');
 const ora = require('ora');
 
 module.exports = function(callback){
-	const spinner = ora('正在获取模板接口...');
+	const spinner = ora('requesting template interface...');
 	spinner.start();
 
 	axios

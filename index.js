@@ -32,7 +32,7 @@ program
 						choices: tpls
 					}
 				]).then(answer => {
-					const spinner = ora('正在下载模板...');
+					const spinner = ora(`downloading ${answer.template} template...`);
 				 	spinner.start();
 					download(`rongcli-templates/${answer.template}`, project_name, {clone: true}, (err) => {
 						if(err){
@@ -78,7 +78,14 @@ program
 								let configIndexResult = handlebars.compile(configIndexContent)(configPaths);
 								fs.writeFileSync(configIndex, configIndexResult);
 							}
-							console.log(symbols.success, chalk.green('项目初始化完成'));
+							console.log(symbols.success, chalk.green(`project ${project_name} was created successfully`));
+							console.log('\r\n')
+							console.log('***************************')
+							console.log(` cd ${project_name}        `)
+							console.log(` cd dev                    `)
+							console.log(` npm install               `)
+							console.log(` npm run dev               `)
+							console.log('***************************')
 						}
 					})
 				})

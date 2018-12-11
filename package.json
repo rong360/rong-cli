@@ -1,10 +1,21 @@
 {
   "name": "rong-cli",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "融项目搭建",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bugs": {
+      "url": "https://github.com/rong360/rong-cli/issues"
+  },
+  "homepage": "https://github.com/rong360/rong-cli",
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/rong360/rong-cli.git"
+  },
+  "keywords": [
+      "rong-ui"
+  ],
   "author": "zyx",
   "license": "ISC",
   "bin": {
