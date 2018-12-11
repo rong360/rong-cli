@@ -1,0 +1,24 @@
+{
+  "name": "rong-cli",
+  "version": "1.0.0",
+  "description": "融项目搭建",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zyx",
+  "license": "ISC",
+  "bin": {
+    "rong-cli": "index.js"
+  },
+  "dependencies": {
+    "async": "^2.4.0",
+    "axios": "^0.18.0",
+    "chalk": "^2.1.0",
+    "commander": "^2.9.0",
+    "download-git-repo": "^1.0.1",
+    "handlebars": "^4.0.5",
+    "inquirer": "^3.3.0",
+    "log-symbols": "^2.2.0",
+    "ora": "^1.3.0"
+  }
+}
