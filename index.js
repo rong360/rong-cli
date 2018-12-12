@@ -62,9 +62,9 @@ program
 								if(/view\/webapp/.test(projectPath)){
 									if(/activity/.test(projectPath)){
 										Object.assign(configPaths, {
-											assetsRoot: `../../../../../../webroot/static/activity/${project_name}`,
+											assetsRoot: `../../../../../../webroot/static/activity/${project_name}/`,
 											assetsSubDirectory: './',
-											assetsPublicPath: `/static/main/activity/${project_name}`
+											assetsPublicPath: `/static/main/activity/${project_name}/`
 										})
 									}else{
 										Object.assign(configPaths, {
