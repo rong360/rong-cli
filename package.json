@@ -1,23 +1,23 @@
 {
   "name": "rong-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "融项目搭建",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bugs": {
-      "url": "https://github.com/rong360/rong-cli/issues"
+    "url": "https://github.com/rong360/rong-cli/issues"
   },
   "homepage": "https://github.com/rong360/rong-cli",
   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/rong360/rong-cli.git"
+    "type": "git",
+    "url": "git+https://github.com/rong360/rong-cli.git"
   },
   "keywords": [
-      "rong-ui",
-      "rong-cli"
+    "rong-ui",
+    "rong-cli"
   ],
-  "author": "zyx",
+  "author": "daikuan-fe",
   "license": "ISC",
   "bin": {
     "rong-cli": "index.js"

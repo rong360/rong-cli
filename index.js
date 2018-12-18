@@ -57,7 +57,8 @@ program
 									assetsRoot: '../../release/',
 									assetsSubDirectory: 'static',
 									assetsPublicPath: '/'
-								}
+								},
+								initAssetsPath = false
 							if(fs.existsSync(configIndex)){
 								if(/view\/webapp/.test(projectPath)){
 									if(/activity/.test(projectPath)){
@@ -73,6 +74,7 @@ program
 											assetsPublicPath: `/static/main/webapp/rui/m_${project_name}/`
 										})
 									}
+									initAssetsPath = true
 								}
 								let configIndexContent = fs.readFileSync(configIndex).toString();
 								let configIndexResult = handlebars.compile(configIndexContent)(configPaths);
@@ -83,6 +85,12 @@ program
 							console.log('***************************')
 							console.log(` cd ${project_name}        `)
 							console.log(` cd dev                    `)
+							if(!initAssetsPath){
+								console.log(symbols.warning, chalk.green(`不能识别静态资源产出路径，请进入config/index.js设置 build->assetsRoot、assetsSubDirectory和assetsPublicPath,例如：`))
+								console.log(chalk.green(` assetsRoot: path.resolve(__dirname, '../../../../../webroot/static/webapp/rui/m_tjy/'),`))
+								console.log(chalk.green(` assetsSubDirectory: 'static',`))
+								console.log(chalk.green(` assetsPublicPath: '/static/main/webapp/rui/m_tjy/',`))
+							}
 							console.log(` npm install               `)
 							console.log(` npm run dev               `)
 							console.log('***************************')
