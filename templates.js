@@ -2,7 +2,7 @@ const axios = require('axios');
 const ora = require('ora');
 
 module.exports = function(callback){
-	const spinner = ora('requesting template interface...');
+	/*const spinner = ora('requesting template interface...');
 	spinner.start();
 
 	axios
@@ -14,5 +14,8 @@ module.exports = function(callback){
 		}else{
 			spinner.fail();
 		}
-	})
+	})*/
+
+	let templates =  ['rong-ui','bambooshoot']
+	callback&&callback(templates)
 }
