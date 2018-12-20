@@ -16,6 +16,6 @@ module.exports = function(callback){
 		}
 	})*/
 
-	let templates =  ['rong-ui','bambooshoot']
+	let templates =  ['single-page','multi-page']
 	callback&&callback(templates)
 }
