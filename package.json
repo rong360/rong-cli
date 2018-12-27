@@ -1,6 +1,6 @@
 {
   "name": "rong-cli",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "融项目搭建",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

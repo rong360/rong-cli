@@ -35,7 +35,8 @@ program
 					const spinner = ora(`downloading ${answer.template} template...`);
 				 	spinner.start();
 					//download(`rongcli-templates/${answer.template}`, project_name, {clone: true}, (err) => {
-					download(`gitlab:gitlab.rong360.com:rongcli-templates/${answer.template}`, project_name, {clone: true}, (err) => {
+					//download(`gitlab:gitlab.rong360.com:rongcli-templates/${answer.template}`, project_name, {clone: true}, (err) => {
+					download(`https://gitlab.rong360.com:rongcli-templates/${answer.template}`, project_name, {clone: true}, (err) => {
 						if(err){
 							spinner.fail();
 							console.log(symbols.error, chalk.red(err));
