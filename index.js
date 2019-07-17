@@ -44,6 +44,7 @@ program
 							spinner.succeed();
 							//更新package.json
 							let fileName = `${project_name}/dev/package.json`,
+							  fileName2 = `${project_name}/package.json`,
 								meta = {
 									name: project_name,
 									description: answer.description
@@ -52,6 +53,10 @@ program
 								let content = fs.readFileSync(fileName).toString();
 								let result = handlebars.compile(content)(meta);
 								fs.writeFileSync(fileName, result);
+							}else if(fs.existsSync(fileName2)){
+								let content = fs.readFileSync(fileName2).toString();
+								let result = handlebars.compile(content)(meta);
+								fs.writeFileSync(fileName2, result);
 							}
 							//更新config/index.js build Paths
 							let configIndex = `${project_name}/dev/config/index.js`,
