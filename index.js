@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 'use strict'
 
+/**
+ * rong-cli
+ * 本地调试：进入根目录 npm install, 执行node index.js create projectName
+ */
+
 const program = require('commander');
 const download = require('download-git-repo');
 const inquirer = require('inquirer');
@@ -10,7 +15,6 @@ const ora = require('ora');
 const handlebars = require('handlebars');
 const fs = require('fs')
 const templates = require("./templates.js")
-
 
 program
 	.version(require('./package').version )
@@ -29,7 +33,7 @@ program
 						type: 'list',
 						name: 'template',
 						message: 'which template do you need:',
-						choices: tpls
+						choices: tpls.sort()
 					}
 				]).then(answer => {
 					const spinner = ora(`downloading ${answer.template} template...`);
@@ -59,16 +63,24 @@ program
 								fs.writeFileSync(fileName2, result);
 							}
 							//更新config/index.js build Paths
-							let configIndex = `${project_name}/dev/config/index.js`,
+							let configIndexFile = '',
 								configPaths = {
 									assetsRoot: '../../release/',
 									assetsSubDirectory: 'static',
 									assetsPublicPath: '/'
 								},
-								initAssetsPath = false
-							if(fs.existsSync(configIndex)){
-								if(/view\/webapp/.test(projectPath)){
-									if(/activity/.test(projectPath)){
+								isExistConfigIndexFile = false , // 下载的模板中是否存在 config/index.js 文件
+								isProjectInViewWebapp = /view\/webapp/.test(projectPath) // 创建项目是否在view webapp目录下
+							if (fs.existsSync(`${project_name}/dev/config/index.js`)) {
+								configIndexFile = `${project_name}/dev/config/index.js`
+								isExistConfigIndexFile = true
+							} else if (fs.existsSync(`${project_name}/config/index.js`)) {
+								configIndexFile = `${project_name}/config/index.js`
+								isExistConfigIndexFile = true
+							}
+							if(isExistConfigIndexFile){
+								if(isProjectInViewWebapp){
+									if(/activity/.test(projectPath)){ // 活动页模板
 										Object.assign(configPaths, {
 											assetsRoot: `../../../../../../webroot/static/activity/${project_name}/`,
 											assetsSubDirectory: './',
@@ -81,18 +93,21 @@ program
 											assetsPublicPath: `/static/main/webapp/rui/m_${project_name}/`
 										})
 									}
-									initAssetsPath = true
 								}
-								let configIndexContent = fs.readFileSync(configIndex).toString();
+								let configIndexContent = fs.readFileSync(configIndexFile).toString();
 								let configIndexResult = handlebars.compile(configIndexContent)(configPaths);
-								fs.writeFileSync(configIndex, configIndexResult);
+								fs.writeFileSync(configIndexFile, configIndexResult);
 							}
+
 							console.log(symbols.success, chalk.green(`project ${project_name} was created successfully`));
+
 							console.log('\r\n')
 							console.log('***************************')
 							console.log(` cd ${project_name}        `)
-							console.log(` cd dev                    `)
-							if(!initAssetsPath){
+							if (fs.existsSync(fileName)) {
+								console.log(` cd dev                  `)
+							}
+							if(!isProjectInViewWebapp && isExistConfigIndexFile){
 								console.log(symbols.warning, chalk.green(`不能识别静态资源产出路径，请进入config/index.js设置 build->assetsRoot、assetsSubDirectory和assetsPublicPath,例如：`))
 								console.log(chalk.green(` assetsRoot: path.resolve(__dirname, '../../../../../webroot/static/webapp/rui/m_tjy/'),`))
 								console.log(chalk.green(` assetsSubDirectory: 'static',`))
