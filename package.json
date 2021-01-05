@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "async": "^2.4.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "chalk": "^2.1.0",
     "commander": "^2.9.0",
     "download-git-repo": "^1.0.1",
